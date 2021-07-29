@@ -3,6 +3,7 @@ class CreatePhotos < ActiveRecord::Migration[6.1]
     create_table :photos do |t|
       t.text :image_data
       t.references :album, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
