@@ -24,8 +24,12 @@ ActiveRecord::Schema.define(version: 2021_07_29_094728) do
   end
 
   create_table "followships", force: :cascade do |t|
+    t.bigint "sender_id", null: false
+    t.bigint "receiver_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["receiver_id"], name: "index_followships_on_receiver_id"
+    t.index ["sender_id"], name: "index_followships_on_sender_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -48,6 +52,8 @@ ActiveRecord::Schema.define(version: 2021_07_29_094728) do
   end
 
   add_foreign_key "albums", "users"
+  add_foreign_key "followships", "users", column: "receiver_id"
+  add_foreign_key "followships", "users", column: "sender_id"
   add_foreign_key "photos", "albums"
   add_foreign_key "photos", "users"
 end
