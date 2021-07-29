@@ -1,7 +1,7 @@
-   <%= form_with(url: signup_path) do |f| %>
+   <%= form_with(model: User.new ,url: signup_path) do |f| %>
   <div class="form-floating mb-3">
     <%= f.text_field :name, class:'form-control', id:"floatingname", placeholder:"full name"%>
-    <label for="floatingname">Password</label>
+    <label for="floatingname">Full Name</label>
   </div>
   <div class="form-floating mb-3">
     <%= f.text_field :email, class:'form-control', id:"floatingemail", placeholder:"Email address"%>

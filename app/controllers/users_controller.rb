@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   def index
   end
 
+  def profile
+    p params
+    @user = User.find_by(profile_url: params[:user])
+  end
+
   def new
     @user = User.new
   end

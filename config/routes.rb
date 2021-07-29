@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#login"
   post "/login", to: "sessions#login_session"
   get "/signup", to: "sessions#signup"
-  post "/login", to: "sessions#signup_session"
+  post "/signup", to: "sessions#signup_session"
   delete "/logout", to: "sessions#logout"
 
-  # cutome routes to return all users connections in a new view
+  # cutom routes to return all users connections in a new view
   get "/followers", to: "users#followers"
   get "/following", to: "users#following"
+  get "/:user", to: "users#profile"
 
   root "users#index"
 end
