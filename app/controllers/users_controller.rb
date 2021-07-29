@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :current_user
+  before_action :authenicate_user
 
   def index
   end
@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     end
     if @user.id == current_user.id
       @albums = @user.albums
+      @album_arr = @user.albums.map { |ele| [ele.name, ele.id] }
+      p @album_arr
     else
       @albums = @user.albums.public_albums
     end

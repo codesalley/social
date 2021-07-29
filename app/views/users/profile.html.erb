@@ -10,15 +10,27 @@
             Following <%= @user.following.size  %>
           <% end   %>
         </p>
+        <% if @user.id == current_user.id %>
+          <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#album">
+              Create Album
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#photo">
+              Add Photo
+            </button>
+          </div>
+        <% end %>
       </div>
       <div>
-        <%= @albums.each do |album| %>
-          <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"> <%= album.title  %></h5>
+        <% @albums.each do |album| %>
+          <%= link_to album_path(album), class: 'card-album' do %>
+            <div class="card" style="width: 18rem;">
+              <%= image_tag('demo.jpg', class:"card-img-top" ) %>
+              <div class="card-body">
+                <h5 class="card-title"> <%= album.name  %></h5>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>

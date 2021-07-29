@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
     user = User.find(session[:user_id])
     return user
   end
+
+  def authenicate_user
+    if session[:user_id].nil?
+      redirect_to login_path
+      return
+    end
+  end
 end

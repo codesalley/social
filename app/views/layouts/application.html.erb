@@ -14,6 +14,8 @@
     <% if current_user %>
       <%= render 'shared/navbar' %>
     <% end %>
+    <%= render 'modals/new_album' %>
+    <%= render 'modals/new_photo' %>
     <%= render partial: 'shared/notice' %>
     <%= yield %>
   </body>
