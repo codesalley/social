@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#logout"
 
   # cutom routes to return all users connections in a new view
-  get "/followers", to: "users#followers"
-  get "/following", to: "users#following"
+  get "/followers/:profile", to: "users#followers"
+  get "/following/:profile", to: "users#following"
   get "/:user", to: "users#profile"
 
   root "users#index"

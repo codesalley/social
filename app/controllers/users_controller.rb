@@ -5,18 +5,20 @@ class UsersController < ApplicationController
   end
 
   def profile
-    p params
     @user = User.find_by(profile_url: params[:user])
+
+    # catching params of random input
+    if !@user
+      render :errorparams
+    end
+    if @user.id == current_user.id
+      @albums = @user.albums
+    else
+      @albums = @user.albums.public_albums
+    end
   end
 
-  def new
-    @user = User.new
-  end
-
-  def update
-  end
-
-  def destroy
+  def errorparams
   end
 
   def followers

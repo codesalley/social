@@ -16,10 +16,7 @@
           <%= link_to 'Albums', albums_path, class:'nav-link active' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Followers', followers_path, class:'nav-link active' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'following', following_path, class:'nav-link active' %>
+          <%= link_to 'profile', "/#{current_user.profile_url}", class:'nav-link active' %>
         </li>
       </ul>
       <%= link_to 'logout', logout_path, method: :delete, class: 'btn btn-outline-secondary me-2'  %>
