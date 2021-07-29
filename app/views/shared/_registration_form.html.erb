@@ -1,0 +1,25 @@
+   <%= form_with(url: signup_path) do |f| %>
+  <div class="form-floating mb-3">
+    <%= f.text_field :name, class:'form-control', id:"floatingname", placeholder:"full name"%>
+    <label for="floatingname">Password</label>
+  </div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :email, class:'form-control', id:"floatingemail", placeholder:"Email address"%>
+    <label for="floatingname">Email Address</label>
+  </div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :profile_url, class:'form-control', id:"floatingprofileUrl", placeholder:"choose a classy name"%>
+    <label for="floatingprofileUrl">choose a classy name</label>
+  </div>
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, class:'form-control', id:"floatingpassword", placeholder:"Password"%>
+    <label for="floatingpassword">Password</label>
+  </div>
+  <div class="form-floating mb-3">
+    <%= f.password_field :password_confirmation, class:'form-control', id:"floatingconfirm", placeholder:"Confirm password"%>
+    <label for="floatingconfirm">Password Confirmation</label>
+  </div>
+  <div class="form-floating mb-3">
+    <%= f.submit 'Create Account', disable_with: "Creating", class: 'btn btn-outline-success'%>
+  </div>
+<% end %>

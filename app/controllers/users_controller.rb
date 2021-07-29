@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :current_user
+
   def index
   end
 
@@ -6,13 +8,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
-    user = User.create()
-  end
-
   def update
   end
 
   def destroy
+  end
+
+  def followers
+  end
+
+  def following
   end
 end
