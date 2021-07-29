@@ -1,2 +1,9 @@
 <div>
+  <h2> Who to follow</h2>
+  <% @users.each do |user| %>
+    <%= link_to "/#{user.profile_url}" do %>
+      <p> <%= user.name %> </p>
+      <%= link_to 'Follow', "/follow/#{user.profile_url}", class: 'rounded-pill'  %>
+    <% end %>
+  <% end %>
 </div>

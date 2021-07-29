@@ -3,12 +3,14 @@
     <h2> <%= @user.name %> </h2>
     <small> Photos : <%=@user.photos.size  %> Album : <%=@user.albums.size  %>  <small>
         <p>
-          <%= link_to "followers/#{@user.name}", class: '' do %>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#followers">
             Followers <%= @user.followers.size  %>
-          <% end   %>
-          <%= link_to "following/#{@user.name}", class: ''  do %>
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#following">
             Following <%= @user.following.size  %>
-          <% end   %>
+          </button>
+          <%= render  'modals/show_following' , following: @user.following %>
+          <%= render 'modals/show_followers',followers: @user.followers  %>
         </p>
         <% if @user.id == current_user.id %>
           <div>

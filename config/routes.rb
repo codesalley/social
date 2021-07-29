@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # cutom routes to return all users connections in a new view
   get "/followers/:profile", to: "users#followers"
-  get "/following/:profile", to: "users#following"
+  get "/follow/:profile", to: "users#follow"
   get "/:user", to: "users#profile"
 
   root "users#index"
