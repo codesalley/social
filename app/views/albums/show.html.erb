@@ -1,5 +1,16 @@
 <div class='pictures-show-container'>
   <% @album.photos.each do |photo| %>
-    <%= image_tag( photo.image.url, class: 'show-image rounded shawdow') %>
+    <div class ="d-flex flex-column" >
+      <%= image_tag(photo.image.url, class: 'show-image rounded shawdow') %>
+      <% if photo.user_id == current_user.id  %>
+        <div class="input-group">
+          <%= form_with(url: "/share") do |f| %>
+            <%= f.hidden_field :url, value: photo.image.url, class: 'form-control', placeholder: 'Email Address' %>
+            <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
+            <%= f.submit 'Share', disable_with: 'sent', class:"btn btn-outline-secondary" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>

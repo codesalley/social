@@ -23,6 +23,10 @@ class UsersController < ApplicationController
   def errorparams
   end
 
+  def share
+    SharePhotoMailer.with(email: params[:email], sender: current_user.name, url: params[:url]).share.deliver_later
+  end
+
   def follow
     follower = User.find_by(profile_url: params[:profile])
     friendship_to = Followship.find_by(sender_id: current_user.id, receiver_id: follower.id)
@@ -34,14 +38,10 @@ class UsersController < ApplicationController
     end
     connection = current_user.following.build(receiver_id: follower.id)
     if connection.save
-      p current_user.following
       redirect_to root_path, notice: "connection sent"
     else
       flash[:alert] = "Try again"
       redirect_to root_path
     end
-  end
-
-  def following
   end
 end
