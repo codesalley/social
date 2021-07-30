@@ -38,7 +38,6 @@ class UsersController < ApplicationController
     end
     connection = current_user.following.build(receiver_id: follower.id)
     if connection.save
-      p current_user.following
       redirect_to root_path, notice: "connection sent"
     else
       flash[:alert] = "Try again"
