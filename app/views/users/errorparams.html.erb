@@ -1,0 +1,5 @@
+<div class='w-100 h-100 grid place-content-center'>
+  <h2> You appeared to be lost </h3>
+  <p> <%= current_user.name %> </p>
+  <%= link_to 'Go Home', "/#{current_user.profile_url}", class: 'btn btn-outline-secondary' %>
+</div>

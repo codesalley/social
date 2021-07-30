@@ -1,0 +1,14 @@
+<%= form_with(url: login_path) do |f| %>
+  <div class="form-floating mb-3">
+    <%= f.text_field :profile_url, class: 'form-control', placeholder: 'Clasy Username' %>
+    <label for="floatingprofileUrl">Clasy Username</label>
+  </div>
+  <div class="form-floating  mb-3">
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+    <label for="floatingpassword">Password</label>
+  </div>
+  <div class="form-floating mb-3 w-100 d-flex justify-content-between">
+    <%= f.submit 'LOG IN', class: 'btn btn-outline-success' %>
+    <%= link_to 'Sign Up', signup_path, class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>
