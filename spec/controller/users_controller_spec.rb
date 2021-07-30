@@ -1,7 +1,11 @@
 require "rails_helper"
 
-RSpec.describe UsersController do
+RSpec.describe UsersController, type: :controller do
   describe "Create new user, name profile_url email and password are required" do
+    before(:all) do
+      user = User.all
+      user.each { |e| e.destroy }
+    end
     it "should not save user if any of the required fileds is omitted" do
       newUser = User.create(name: "new user", password: "testtest", password_confirmation: "testest")
       expect(newUser.save).to eq(false)
@@ -15,5 +19,10 @@ RSpec.describe UsersController do
       expect(newUser.save).to eq(true)
       expect(User.last.name).to eq("user")
     end
+  end
+
+  describe "GET / shoueld render users#index and redirect to login path since user is not signed in " do
+    before { get :index }
+    it { should redirect_to(login_path) }
   end
 end

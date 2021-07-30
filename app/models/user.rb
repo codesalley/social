@@ -9,8 +9,8 @@ class User < ApplicationRecord
   # associations
   has_many :albums, class_name: "Album", dependent: :destroy
   has_many :photos, class_name: "Photo", dependent: :destroy
-  has_many :followers, class_name: "Followship", foreign_key: "receiver_id"
-  has_many :following, class_name: "Followship", foreign_key: "sender_id"
-  has_many :friends, through: :followers, source: :sender
-  has_many :fans, through: :following, source: :receiver
+  has_many :followers, class_name: "Followship", foreign_key: "receiver_id", dependent: :destroy
+  has_many :following, class_name: "Followship", foreign_key: "sender_id", dependent: :destroy
+  has_many :fans, through: :followers, source: :receiver
+  has_many :friends, through: :following, source: :sender
 end
