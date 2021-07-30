@@ -19,7 +19,8 @@
     <%= f.password_field :password_confirmation, class:'form-control', id:"floatingconfirm", placeholder:"Confirm password"%>
     <label for="floatingconfirm">Password Confirmation</label>
   </div>
-  <div class="form-floating mb-3">
+  <div class="form-group mb-3 form-floating mb-3 w-100 d-flex justify-content-between">
     <%= f.submit 'Create Account', disable_with: "Creating", class: 'btn btn-outline-success'%>
+    <%= link_to 'Log In', login_path, class: 'btn btn-outline-secondary' %>
   </div>
 <% end %>

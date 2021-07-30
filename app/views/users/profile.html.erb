@@ -1,38 +1,39 @@
 <div class='profile-container'>
-  <%= image_tag('demo.jpg', class: 'profile-demo-img rounded-circle shadow-sm ') %>
-  <h2> <%= @user.name %> </h2>
-  <small> Photos : <%=@user.photos.size  %> Album : <%=@user.albums.size  %>  <small>
-      <p>
-        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#followers">
-          Followers <%= @user.fans.size  %>
+  <div class='profile-section'>
+    <%= image_tag('demo.jpg', class: 'profile-demo-img rounded-circle shadow-sm ') %>
+    <h2> <%= @user.name %> </h2>
+    <small> Photos : <%=@user.photos.size  %> Album : <%=@user.albums.size  %>  </small>
+    <p class=' rounded '>
+      <button  class="inner-action-btn" data-bs-toggle="modal" data-bs-target="#followers">
+        Followers <%= @user.fans.size  %>
+      </button>
+      <button  class="inner-action-btn"  data-bs-toggle="modal" data-bs-target="#following">
+        Following <%= @user.friends.size  %>
+      </button>
+      <%= render  'modals/show_following' , following: @user.friends %>
+      <%= render 'modals/show_followers',followers: @user.fans  %>
+    </p>
+    <% if @user.id == current_user.id %>
+      <div>
+        <button   class="inner-action-btn"  data-bs-toggle="modal" data-bs-target="#album">
+          Create Album
         </button>
-        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#following">
-          Following <%= @user.friends.size  %>
+        <button   class="inner-action-btn"  data-bs-toggle="modal" data-bs-target="#photo">
+          Add Photo
         </button>
-        <%= render  'modals/show_following' , following: @user.friends %>
-        <%= render 'modals/show_followers',followers: @user.fans  %>
-      </p>
-      <% if @user.id == current_user.id %>
-        <div>
-          <button type="button" class="" data-bs-toggle="modal" data-bs-target="#album">
-            Create Album
-          </button>
-          <button type="button" class="" data-bs-toggle="modal" data-bs-target="#photo">
-            Add Photo
-          </button>
+      </div>
+    <% end %>
+  </div>
+  <div class='album-display'>
+    <% @albums.each do |album| %>
+      <%= link_to album_path(album), class: 'card-album text-muted' do %>
+        <div class="card" >
+          <%= image_tag('demo.jpg', class:"card-img-top" ) %>
+          <div class="card-body">
+            <h5 class="card-title"> <%= album.name  %></h5>
+          </div>
         </div>
       <% end %>
-    </div>
-    <div>
-      <% @albums.each do |album| %>
-        <%= link_to album_path(album), class: 'card-album' do %>
-          <div class="card" style="width: 18rem;">
-            <%= image_tag('demo.jpg', class:"card-img-top" ) %>
-            <div class="card-body">
-              <h5 class="card-title"> <%= album.name  %></h5>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
+</div>
