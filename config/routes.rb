@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :photos
-  resources :albums
+  resources :albums, only: [:create, :show]
 
   # custom routes for seesions -> login , singup and logout
   get "/login", to: "sessions#login"
@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get "/followers/:profile", to: "users#followers"
   get "/follow/:profile", to: "users#follow"
   get "/:user", to: "users#profile"
+
+  #share
+  post "/share", to: "users#share"
 
   root "users#index"
 end

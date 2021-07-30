@@ -23,6 +23,10 @@ class UsersController < ApplicationController
   def errorparams
   end
 
+  def share
+    SharePhotoMailer.with(email: params[:email], sender: current_user.name, url: params[:url]).share.deliver_later
+  end
+
   def follow
     follower = User.find_by(profile_url: params[:profile])
     friendship_to = Followship.find_by(sender_id: current_user.id, receiver_id: follower.id)
@@ -40,8 +44,5 @@ class UsersController < ApplicationController
       flash[:alert] = "Try again"
       redirect_to root_path
     end
-  end
-
-  def following
   end
 end
